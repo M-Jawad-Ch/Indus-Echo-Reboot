@@ -1,0 +1,15 @@
+*.xml
+*.ipynb
+*.sqlite*
+*__pycache__
+*/__pycache__/
+*.env
+/static/
+media/
+*/migrations/*
+!*/migrations/__init__.py
+node_modules/
+*.js
+!*/static/*/*.js
+*.mjs
+temp.json
