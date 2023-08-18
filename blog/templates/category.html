@@ -1,62 +1,12 @@
 {% extends 'main.html' %}
 
+{% load static %}
 
-{% block page-style %}
-<style>
-    body {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        background-image: linear-gradient(to top, rgba(0, 255, 0, 0.2), white);
-    }
+{% block title %} {{ title }} {% endblock %}
 
-    #main {
-        height: 100%;
-    }
+{% block description %} {{ desc }} {% endblock %}
 
-    .main-container {
-        display: flex;
-        justify-content: center;
-        height: 100%;
-    }
-
-    .content-column {
-        /* width: 40em; */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-        padding: 1em;
-
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        background-color: rgba(255, 255, 255, 0.5);
-
-        border-radius: 5px;
-    }
-
-    .article {
-        padding: 0.5em 0;
-        width: 100%;
-    }
-
-    .title {
-        font-weight: bold;
-        margin-right: 5em;
-    }
-
-    .date {
-        font-weight: lighter;
-        float: right;
-    }
-
-    h1 {
-        text-align: center;
-        padding-bottom: 0.25em;
-    }
-</style>
-{% endblock %}
-
+{% block css-links %} <link rel="stylesheet" href="{% static 'css/category.css' %}"> {% endblock %}
 
 {% block main %}
 <section id="main">
@@ -65,7 +15,7 @@
             <h1> {{ category.title }} </h1>
             {% for article in articles %}
             <div class="article">
-                <a href="/{{ category.slug }}/{{ article.slug }}">
+                <a href="{{ article.link }}">
                     <span class="title">{{ article.title }}</span>
                 </a><span class="date">{{ article.date }}</span>
             </div>

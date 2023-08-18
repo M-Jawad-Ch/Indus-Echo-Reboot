@@ -14,7 +14,7 @@ from django_object_actions import DjangoObjectActions, action
 from django.utils.text import slugify
 
 from .models import Article, Generator, Category, Image, Rss, Used
-from .models import ImageGenerator, assign_category, Contact, Comment, Index
+from .models import ImageGenerator, Index
 from .models import ExtraPages
 
 from .openai_handler import generate, generate_image_prompt, generate_image, summarize
@@ -51,13 +51,6 @@ class ImageAdmin(admin.ModelAdmin):
         obj.name = slugify(obj.name)
 
         return super().save_model(request, obj, form, change)
-
-
-@admin.register(Contact)
-class ContactAdmin(admin.ModelAdmin):
-    search_fields = ['first_name', 'last_name', 'email', 'comments']
-    readonly_fields = ('first_name', 'last_name', 'comments', 'email')
-    list_per_page = 20
 
 
 @admin.register(ImageGenerator)
@@ -174,11 +167,6 @@ class ArticleAdmin(admin.ModelAdmin):
 
     def image_html(self, obj: Article):
         return obj.image.html if obj.image else None
-
-
-@admin.register(Comment)
-class CommentAdmin(admin.ModelAdmin):
-    search_fields = ['text', 'name']
 
 
 @admin.register(Category)
