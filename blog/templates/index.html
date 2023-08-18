@@ -45,10 +45,6 @@
                         {{ latest_posts.0.desc }}
                     </div>
                     {% endautoescape %}
-                    <script>
-                        var x = document.getElementById('main-story-inner')
-                        x.querySelector('div').querySelector('a').innerHTML = `<h1>${x.querySelector('h1').innerText}</h1><p>${x.querySelector('p').innerText}</p>`
-                    </script>
                 </a>
             </div>
         </div>
@@ -80,13 +76,6 @@
             </div>
         </a>
         {% endfor %}
-        <script>
-            x = document.getElementsByClassName('article-preview')
-            for (const preview of x) {
-                let para = preview.querySelector('p')
-                preview.innerHTML = para.innerText
-            }
-        </script>
     </div>
 </section>
 {% endblock %}

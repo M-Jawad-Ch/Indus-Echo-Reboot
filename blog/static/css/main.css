@@ -12,7 +12,6 @@ a {
     --border-color: rgba(0, 0, 0, 0.1);
 }
 
-
 body {
     background-color: white;
 }
@@ -27,6 +26,27 @@ header {
 
 main {
     min-height: 50vh;
+}
+
+img {
+    width: 100%;
+    object-position: center;
+    object-fit: cover;
+    display: block;
+}
+
+.blur-load {
+    background-size: cover;
+    background-position: center;
+}
+
+.blur-load.loaded>img {
+    opacity: 1;
+}
+
+.blur-load>img {
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
 }
 
 #categories {

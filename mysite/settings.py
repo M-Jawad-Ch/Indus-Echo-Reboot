@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django_object_actions',
     'blog',
-    'django_cron'
+    'django_cron',
+    'django_cleanup.apps.CleanupConfig'
 ]
 
 CRON_CLASSES = [

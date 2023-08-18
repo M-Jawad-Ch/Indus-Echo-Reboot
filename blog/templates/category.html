@@ -9,18 +9,5 @@
 {% block css-links %} <link rel="stylesheet" href="{% static 'css/category.css' %}"> {% endblock %}
 
 {% block main %}
-<section id="main">
-    <div class="main-container">
-        <div class="content-column">
-            <h1> {{ category.title }} </h1>
-            {% for article in articles %}
-            <div class="article">
-                <a href="{{ article.link }}">
-                    <span class="title">{{ article.title }}</span>
-                </a><span class="date">{{ article.date }}</span>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
+
 {% endblock %}

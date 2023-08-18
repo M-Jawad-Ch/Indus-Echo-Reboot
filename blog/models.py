@@ -12,6 +12,9 @@ from threading import Thread
 import numpy
 import re
 
+from PIL import Image as _Image
+from io import BytesIO
+
 
 def embed(content: str):
     for _ in range(5):
@@ -29,12 +32,28 @@ class Image(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     html = models.TextField()
     alt = models.CharField(max_length=200, blank=True)
+    small_image = models.ImageField(upload_to='images/', null=True, blank=True)
 
     def get_absolute_url(self):
-        return f'/images/{self.image.name}' if not re.match('images', self.image.name) else f'/{self.image.name}'
+        return self.image.url
 
     def save(self, *args, **kwargs):
-        self.html = f'<img src="{self.get_absolute_url()}" alt="{self.alt}">'
+        self.html = f'<div class="blur-load" style="background-image: url({self.small_image.url})">' + \
+            f'<img src="{self.get_absolute_url()}" alt="{self.alt}" loading="lazy">' + \
+            f'</div>'
+
+        if not self.small_image:
+            img = _Image.open(self.image.file).copy()
+            w, h = img.size
+            factor = 40 / max(w, h)
+            w *= factor
+            h *= factor
+
+            img = img.resize((int(w), int(h)))
+            data = BytesIO()
+            img.save(data, 'jpeg')
+            self.small_image.save('small-' + self.image.name, data)
+
         super(Image, self).save(*args, **kwargs)
 
     def __str__(self):

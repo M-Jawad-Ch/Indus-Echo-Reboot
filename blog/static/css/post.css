@@ -1,7 +1,7 @@
 #main-container {
     display: flex;
-    justify-content: center;
-    padding: 2em 17em;
+    /* justify-content: center; */
+    /* padding: 2em 17em; */
 }
 
 #inner-container {
@@ -9,65 +9,65 @@
     flex-direction: column;
     background-color: rgba(255, 255, 255, 0.5);
     padding: 1em 2em;
+    padding-left: 5em;
+    padding-top: 7em;
+    max-width: 50%;
 
     font-size: large;
     color: rgba(0, 0, 0, 0.7);
 
 }
 
-@media (max-width: 1100px) {
-    #main-container {
-        padding: 2em 10em;
-    }
+#date {
+    font-size: medium;
+    /* text-align: center; */
 }
 
-@media (max-width: 1000px) {
-    #main-container {
-        padding: 2em 8em;
-    }
+p {
+    margin-top: 0.3em;
+    margin-bottom: 1em;
+    /* text-align: justify; */
+}
+
+
+h2 {
+    margin-top: 1em;
+    /* text-align: center; */
+}
+
+h3 {
+    margin-top: 1em;
+}
+
+hr {
+    margin-top: 1em;
 }
 
 @media (max-width: 900px) {
-    #main-container {
-        padding: 2em 6em;
+    #inner-container {
+        /* padding: 2em 6em; */
+        max-width: 65%;
     }
 }
 
 @media (max-width: 800px) {
     #main-container {
-        padding: 2em;
-    }
-}
-
-@media (max-width: 600px) {
-    #main-container {
-        padding: 2em 0;
+        justify-content: center;
     }
 
     #inner-container {
-        padding: 1em;
+        padding: 1em 2em;
+        padding-top: 6em;
     }
 }
 
-#date {
-    font-size: medium;
-    text-align: center;
-}
+@media (max-width: 650px) {
+    #main-container {
+        padding: 0 0.5em;
+    }
 
-p {
-    margin: 0.25em 0;
-    text-align: justify;
-}
-
-h1 {
-    text-align: center;
-}
-
-h2 {
-    margin-top: 1em;
-    text-align: center;
-}
-
-hr {
-    margin-top: 1em;
+    #inner-container {
+        max-width: 100%;
+        padding: 1em 0;
+    }
 }
