@@ -97,7 +97,6 @@ class Category(models.Model):
     )
 
     description = models.TextField(blank=True)
-    title = models.CharField(max_length=200, blank=True)
     visible = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
@@ -195,7 +194,7 @@ class Article(models.Model):
 
         self.modified = datetime.now(tz=timezone.utc)
 
-        if not self.embedding or self.body != old.body:
+        if not self.embedding:
             self.embedding = dumps(embed(self.body))
             assign_category(self)
 
