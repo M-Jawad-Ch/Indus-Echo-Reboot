@@ -116,16 +116,16 @@ def get_category(req: HttpRequest, slug: str):
         'articles': [{
             'slug': article.slug,
             'title': article.title,
-            'image': article.image.image.url if article.image else '',
+            'image': article.image.html if article.image else '',
             'date': article.date,
             'desc': article.summary,
             'link': article.get_absolute_url(),
-            'author': f'{article.author.first_name} {article.author.last_name} ~ ' if article.author else ''
-        } for article in articles if article.visible],
+            'author': str(article.author) if article.author else ''
+        } for article in articles if article.visible and article.image],
 
         'link': category.get_absolute_url(),
         'name': category.name,
-        'image': category.image.image.url if category.image else '',
+        'image': category.image.html if category.image else '',
         'desc': category.description,
         'title': category.title
     })

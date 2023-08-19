@@ -9,5 +9,30 @@
 {% block css-links %} <link rel="stylesheet" href="{% static 'css/category.css' %}"> {% endblock %}
 
 {% block main %}
-
+<div class="main-container">
+    <div class="image-container">
+        {% autoescape off %}
+        {{ image }}
+        {% endautoescape %}
+    </div>
+    <h1>{{ name }}</h1>
+    <div class="articles-container">
+        {% autoescape off %}
+        {% for article in articles %}
+        <div class="article">
+            <div class="image-container">
+                {{ article.image }}
+            </div>
+            <div class="text-container">
+                <a href="{{ article.link }}">
+                    <h2>{{ article.title }}</h2>
+                    <p>{{ article.desc }}</p> <br>
+                    <span class="date">{{ article.date }}</span>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+        {% endautoescape %}
+    </div>
+</div>
 {% endblock %}

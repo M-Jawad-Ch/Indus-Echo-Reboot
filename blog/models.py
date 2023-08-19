@@ -38,10 +38,6 @@ class Image(models.Model):
         return self.image.url
 
     def save(self, *args, **kwargs):
-        self.html = f'<div class="blur-load" style="background-image: url({self.small_image.url})">' + \
-            f'<img src="{self.get_absolute_url()}" alt="{self.alt}" loading="lazy">' + \
-            f'</div>'
-
         if not self.small_image:
             img = _Image.open(self.image.file).copy()
             w, h = img.size
@@ -53,6 +49,10 @@ class Image(models.Model):
             data = BytesIO()
             img.save(data, 'jpeg')
             self.small_image.save('small-' + self.image.name, data)
+
+        self.html = f'<div class="blur-load" style="background-image: url({self.small_image.url})">' + \
+            f'<img src="{self.get_absolute_url()}" alt="{self.alt}" loading="lazy">' + \
+            f'</div>'
 
         super(Image, self).save(*args, **kwargs)
 
